@@ -1,0 +1,54 @@
+#root {
+    text-align: center;
+    height: 100vh;
+}
+
+.navbar {
+    padding: 1rem;
+    background-color: rgb(44, 44, 50);
+    display: flex;
+    justify-content: space-between;
+
+    .logo-and-buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .name {
+        left: 10px;
+        margin-right: 50px;
+
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .clearButton {
+        height: 40px;
+    }
+}
+
+.insert-value {
+    input {
+        font-size: large;
+        border-radius: 5px;
+        min-width: 50px;
+        width: 50px;
+        border: 0.5px solid transparent;
+        margin-right: 20px;
+        max-width: 150px;
+        min-height: 25px;
+        transition: border-color 0.25s;
+    }
+
+    button {
+      margin-right: 30px;
+  }
+}
+
+input:hover {
+    border-color: #646cff;
+}
+
+
