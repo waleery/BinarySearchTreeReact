@@ -1,13 +1,16 @@
-import './App.scss'
-import Navbar from './Components/Navbar'
+import { useState } from "react";
+import "./App.scss";
+import Navbar from "./Components/Navbar";
+import Bst from "./Components/Bst";
+
 
 function App() {
-
-  return (
-    <>
-      <Navbar />
-    </>
-  )
+    return (
+        <>
+            <Navbar />
+            <Bst />
+        </>
+    );
 }
 
-export default App
+export default App;

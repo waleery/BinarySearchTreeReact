@@ -59,4 +59,17 @@ button:focus-visible {
     background-color: rgb(243, 242, 242);
   }
 
+  /* node */
+  .rd3t-node {
+    fill:darkgray !important;
+    stroke: rgb(103, 103, 103) !important;
+  }
+  /* link to node */
+  .rd3t-link {
+    stroke:black!important;
+  }
+  /* node label */
+  .rd3t-label__title{
+    fill: black !important
+  }
 }

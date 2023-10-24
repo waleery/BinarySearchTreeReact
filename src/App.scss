@@ -43,8 +43,8 @@
     }
 
     button {
-      margin-right: 30px;
-  }
+        margin-right: 30px;
+    }
 }
 
 input:hover {
@@ -52,3 +52,28 @@ input:hover {
 }
 
 
+//hide leaf without value
+.node__leaf > circle {
+    display: none !important;
+    fill: none;
+    r: 0;
+}
+
+//hide linkt to leaf without values
+.link__to-leaf {
+    stroke: none !important;
+    display: none !important;
+}
+
+//node
+.rd3t-node {
+    fill: rgb(236, 230, 230) !important;
+}
+//link to node
+.rd3t-link {
+    stroke: rgb(236, 230, 230) !important;
+}
+//node label
+.rd3t-label__title {
+    fill: rgb(236, 230, 230) !important;
+}
