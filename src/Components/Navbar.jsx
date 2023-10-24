@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { NavbarContext } from "../App";
 
 const Navbar = () => {
-    const [value, setValue] = useState();
+    const { navbarFunctions, setNavbarFunctions } = useContext(NavbarContext);
+    const [value, setValue] = useState('');
 
     useEffect(() => {
         document.querySelector("input").addEventListener("input", function () {
@@ -15,15 +17,21 @@ const Navbar = () => {
                 <span className="name">Binary Search Tree </span>
 
                 <div className="insert-value">
-                    <input
-                    //onChange={(e) => setNumber(e.target.value)}
-                    //value={number}
-                    ></input>
-                    <button>Insert</button>
+                    <input onChange={(e) => setValue(e.target.value)} value={value}></input>
+                    <button
+                        onClick={() => {
+                            if(value != ""){
+                                navbarFunctions.insertValue(value)
+                                setValue("")
+                            }
+                        }}
+                    >
+                        Insert
+                    </button>
                 </div>
 
-                <button>Random 30 values</button>
-                <button>Random value</button>
+                <button onClick={() => navbarFunctions.insertRandomValues(30)}>Random 30 values</button>
+                <button onClick={() => navbarFunctions.insertRandomValues()}>Random value</button>
             </div>
             <button className="clearButton">Clear</button>
         </nav>

@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 import initialBstData from "../data/initialBstData.json";
+import { NavbarContext } from "../App";
 
 const Bst = () => {
     const [bstData, setBstData] = useState(initialBstData);
+    const { setNavbarFunctions } = useContext(NavbarContext);
+
+    useEffect(() => {
+        setNavbarFunctions({
+            insertValue: (value) => {
+                handleInsertValue(value);
+            },
+            insertRandomValues: (count, maxValue) =>{
+                insertRandomValues(count, maxValue)
+            }
+        })
+    }, []);
 
     const getDynamicPathClass = ({ target }) => {
         if (!target.children) {
@@ -28,6 +41,29 @@ const Bst = () => {
 
         return root
     };
+
+    const handleInsertValue = (valueToInsert) => {
+
+        const updatedBstData = insertNode(
+            { ...bstData },
+            valueToInsert
+        );
+        setBstData(updatedBstData);
+    };
+
+    const insertRandomValues = (count=1,  maxValue = 100) =>{
+        const updatedBstData = { ...bstData }
+        console.log(count)
+
+        for (let i = 0; i < count; i++){
+            let randomNumber = Math.floor(Math.random() * (maxValue - 1) + 1);
+
+            insertNode(updatedBstData, randomNumber);
+
+        }
+        setBstData(updatedBstData);
+    }
+
 
     return (
         <>
