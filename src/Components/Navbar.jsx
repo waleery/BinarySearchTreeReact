@@ -14,14 +14,14 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="logo-and-buttons">
-                <span className="name">Binary Search Tree </span>
+                <span className="name">{navbarFunctions.name}</span>
 
                 <div className="insert-value">
                     <input onChange={(e) => setValue(e.target.value)} value={value}></input>
                     <button
                         onClick={() => {
                             if(value != ""){
-                                navbarFunctions.insertValue(value)
+                                navbarFunctions.insertValue.insertFunction(value)
                                 setValue("")
                             }
                         }}
@@ -29,11 +29,13 @@ const Navbar = () => {
                         Insert
                     </button>
                 </div>
+                {navbarFunctions && navbarFunctions.functions ? navbarFunctions.functions.map(f => (
+                    <button onClick={() =>f.function()}>{f.label}</button>
+                )) : null }
 
-                <button onClick={() => navbarFunctions.insertRandomValues(30)}>Random 30 values</button>
-                <button onClick={() => navbarFunctions.insertRandomValues()}>Random value</button>
             </div>
-            <button className="clearButton">Clear</button>
+            {navbarFunctions && navbarFunctions.clear ? 
+            <button className="clearButton" onClick={() => navbarFunctions.clear.clearFunction()}>{navbarFunctions.clear.label}</button> : null}
         </nav>
     );
 };

@@ -9,14 +9,33 @@ const Bst = () => {
 
     useEffect(() => {
         setNavbarFunctions({
-            insertValue: (value) => {
-                handleInsertValue(value);
+            name: "Binary Search Treee",
+            insertValue: {
+                insertFunction: handleInsertValue,
+                label: "Insert",
             },
-            insertRandomValues: (count, maxValue) =>{
-                insertRandomValues(count, maxValue)
-            }
-        })
-    }, []);
+            functions: [
+                {
+                    function: insertRandomValues.bind(null, 30),
+                    label: "Random 30 values",
+                },
+                {
+                    function: insertRandomValues,
+                    label: "Random value",
+                },
+            ],
+            clear: {
+                clearFunction: clearTree,
+                label: "Clear",
+            },
+        });
+    }, [bstData]);
+
+    const clearTree = () => {
+        let randomValue = Math.floor(Math.random() * (100 - 1)) + 1;
+        const updatedBstData = { name: randomValue, children: [{}, {}] };
+        setBstData(updatedBstData);
+    };
 
     const getDynamicPathClass = ({ target }) => {
         if (!target.children) {
@@ -39,31 +58,21 @@ const Bst = () => {
         else if (valueToInsert > root.name)
             root.children[1] = insertNode(root.children[1], valueToInsert);
 
-        return root
+        return root;
     };
 
     const handleInsertValue = (valueToInsert) => {
-
-        const updatedBstData = insertNode(
-            { ...bstData },
-            valueToInsert
-        );
+        const updatedBstData = insertNode({ ...bstData }, valueToInsert);
         setBstData(updatedBstData);
     };
 
-    const insertRandomValues = (count=1,  maxValue = 100) =>{
-        const updatedBstData = { ...bstData }
-        console.log(count)
-
-        for (let i = 0; i < count; i++){
+    const insertRandomValues = (count = 1, maxValue = 100) => {
+        for (let i = 0; i < count; i++) {
             let randomNumber = Math.floor(Math.random() * (maxValue - 1) + 1);
 
-            insertNode(updatedBstData, randomNumber);
-
+            handleInsertValue(randomNumber);
         }
-        setBstData(updatedBstData);
-    }
-
+    };
 
     return (
         <>
