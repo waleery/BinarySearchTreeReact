@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 import initialBstData from "../data/initialBstData.json";
 import { NavbarContext } from "../App";
+import { markLiksToNodesWithoutChildern } from "./Helpers/ReactD3Helpers";
 
 const Bst = () => {
     const [bstData, setBstData] = useState(initialBstData);
@@ -35,13 +36,6 @@ const Bst = () => {
         let randomValue = Math.floor(Math.random() * (100 - 1)) + 1;
         const updatedBstData = { name: randomValue, children: [{}, {}] };
         setBstData(updatedBstData);
-    };
-
-    const getDynamicPathClass = ({ target }) => {
-        if (!target.children) {
-            return "link__to-leaf";
-        }
-        return "link__to-branch";
     };
 
     const insertNode = (root, valueToInsert) => {
@@ -82,7 +76,7 @@ const Bst = () => {
                 rootNodeClassName="node__root"
                 branchNodeClassName="node__branch"
                 leafNodeClassName="node__leaf"
-                pathClassFunc={getDynamicPathClass}
+                pathClassFunc={markLiksToNodesWithoutChildern}
                 translate={{ x: 800, y: 100 }}
             />
         </>
