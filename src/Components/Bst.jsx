@@ -11,9 +11,11 @@ const Bst = () => {
     useEffect(() => {
         setNavbarFunctions({
             name: "Binary Search Treee",
-            insertValue: {
-                insertFunction: handleInsertValue,
-                label: "Insert",
+            value: {
+                insertValue: handleInsertValue,
+                label0: "Insert",
+                findValue: handleFindValue, // Używamy funkcji opakowującej
+                label1: "Find"
             },
             functions: [
                 {
@@ -38,6 +40,28 @@ const Bst = () => {
         setBstData(updatedBstData);
     };
 
+    const handleFindValue = (valueToFind) => {
+        let isValue = findValue(parseInt(valueToFind))
+        if(isValue){
+            console.log("Wartość jest w drzewie")
+        } else {
+            console.log("Wartości nie ma w drzewie")
+        }
+    }
+
+    const findValue = (valueToFind, root = { ...bstData },) => {
+        console.log(root)
+        if(root.name === null || Object.keys(root).length === 0 || root.name === valueToFind){
+            return root.name
+        }
+
+        if( valueToFind > root.name){
+            return findValue(valueToFind, root.children[1])
+        } else {
+            return findValue(valueToFind, root.children[0])
+        }
+    }
+
     const insertNode = (root, valueToInsert) => {
         if (!root || Object.keys(root).length === 0) {
             return (root = { name: valueToInsert, children: [{}, {}] });
@@ -56,7 +80,7 @@ const Bst = () => {
     };
 
     const handleInsertValue = (valueToInsert) => {
-        const updatedBstData = insertNode({ ...bstData }, valueToInsert);
+        const updatedBstData = insertNode({ ...bstData }, parseInt(valueToInsert));
         setBstData(updatedBstData);
     };
 

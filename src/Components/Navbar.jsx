@@ -17,16 +17,27 @@ const Navbar = () => {
                 <span className="name">{navbarFunctions.name}</span>
 
                 <div className="insert-value">
-                    <input onChange={(e) => setValue(e.target.value)} value={value}></input>
                     <button
                         onClick={() => {
                             if(value != ""){
-                                navbarFunctions.insertValue.insertFunction(value)
+                                navbarFunctions.value.insertValue(value)
                                 setValue("")
                             }
                         }}
                     >
-                        Insert
+                        {navbarFunctions?.value?.label0}
+                    </button>
+                    <input type="number" onChange={(e) => setValue(e.target.value)} value={value}></input>
+
+                    <button
+                        onClick={() => {
+                            if(value != ""){
+                                navbarFunctions.value.findValue(value)
+                                //setValue("")
+                            }
+                        }}
+                    >
+                        {navbarFunctions?.value?.label1}
                     </button>
                 </div>
                 {navbarFunctions && navbarFunctions.functions ? navbarFunctions.functions.map(f => (
