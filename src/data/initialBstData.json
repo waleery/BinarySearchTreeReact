@@ -1,9 +1,15 @@
 {
     "name": 43,
+    "path": false,
     "children": [
-        { "name": 23, "children": [{}, {}] },
+        { 
+            "name": 23,
+            "path": false,
+            "children": [{}, {}] 
+        },
         {
             "name": 56,
+            "path": false,
             "children": [{}, {}]
         }
     ]

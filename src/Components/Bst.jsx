@@ -36,12 +36,14 @@ const Bst = () => {
 
     const clearTree = () => {
         let randomValue = Math.floor(Math.random() * (100 - 1)) + 1;
-        const updatedBstData = { name: randomValue, children: [{}, {}] };
+        const updatedBstData = { name: randomValue, path: false, children: [{}, {}] };
         setBstData(updatedBstData);
     };
 
     const handleFindValue = (valueToFind) => {
+        console.log(bstData)
         let isValue = findValue(parseInt(valueToFind))
+        console.log(bstData)
         if(isValue){
             console.log("Wartość jest w drzewie")
         } else {
@@ -49,22 +51,29 @@ const Bst = () => {
         }
     }
 
-    const findValue = (valueToFind, root = { ...bstData },) => {
+    const findValue = (valueToFind, root = {...bstData}) => {
         console.log(root)
-        if(root.name === null || Object.keys(root).length === 0 || root.name === valueToFind){
+        if(root.name === null || Object.keys(root).length === 0){
             return root.name
         }
 
+        if(root.name === valueToFind){
+            root.path = true; // Mark the node as part of the path
+            return root.name;
+        }
+
         if( valueToFind > root.name){
+            root.path = true
             return findValue(valueToFind, root.children[1])
         } else {
+            root.path = true
             return findValue(valueToFind, root.children[0])
         }
     }
 
     const insertNode = (root, valueToInsert) => {
         if (!root || Object.keys(root).length === 0) {
-            return (root = { name: valueToInsert, children: [{}, {}] });
+            return (root = { name: valueToInsert,path: false, children: [{}, {}] });
         }
 
         if (root.name == valueToInsert) {

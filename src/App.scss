@@ -52,29 +52,62 @@ input:hover {
     border-color: #646cff;
 }
 
-
-//hide leaf without value
 .node__leaf > circle {
-    display: none !important;
+    display: none;
     fill: none;
     r: 0;
 }
 
-//hide linkt to leaf without values
 .link__to-leaf {
-    stroke: none !important;
-    display: none !important;
+    stroke: none;
+    display: none;
 }
 
-//node
 .rd3t-node {
     fill: rgb(236, 230, 230) !important;
 }
-//link to node
 .rd3t-link {
     stroke: rgb(236, 230, 230) !important;
 }
-//node label
+.path {
+    stroke: red  !important;
+}
 .rd3t-label__title {
     fill: rgb(236, 230, 230) !important;
 }
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
+
+    .navbar {
+        background-color: rgb(243, 242, 242);
+    }
+
+    /* node */
+    .rd3t-node {
+        fill: darkgray !important;
+        stroke: rgb(103, 103, 103);
+    }
+
+    /* link to node */
+    .rd3t-link {
+        stroke: black !important;
+    }
+    .path {
+        stroke: red  !important;
+    }
+    /* node label */
+    .rd3t-label__title {
+        fill: black !important;
+    }
+}
+
