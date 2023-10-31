@@ -43,9 +43,11 @@ const Bst = () => {
     const handleFindValue = (valueToFind) => {
         console.log(bstData)
         let isValue = findValue(parseInt(valueToFind))
-        console.log(bstData)
+        console.log(isValue)
         if(isValue){
             console.log("Wartość jest w drzewie")
+            setBstData({ ...bstData });
+
         } else {
             console.log("Wartości nie ma w drzewie")
         }
