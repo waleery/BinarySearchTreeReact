@@ -6,6 +6,7 @@ import { markLiksToNodesWithoutChildern } from "./Helpers/ReactD3Helpers";
 
 const Bst = () => {
     const [bstData, setBstData] = useState(initialBstData);
+    const [bstDataWithoutPath, setBstDataWithouPath] = useState();
     const { setNavbarFunctions } = useContext(NavbarContext);
 
     useEffect(() => {
@@ -26,6 +27,10 @@ const Bst = () => {
                     function: insertRandomValues,
                     label: "Random value",
                 },
+                {
+                    function: clearPath,
+                    label: "Clear path",
+                },
             ],
             clear: {
                 clearFunction: clearTree,
@@ -34,6 +39,10 @@ const Bst = () => {
         });
     }, [bstData]);
 
+    const clearPath = () => {
+        setBstData(bstDataWithoutPath)
+    }
+
     const clearTree = () => {
         let randomValue = Math.floor(Math.random() * (100 - 1)) + 1;
         const updatedBstData = { name: randomValue, path: false, children: [{}, {}] };
@@ -41,6 +50,7 @@ const Bst = () => {
     };
 
     const handleFindValue = (valueToFind) => {
+        setBstDataWithouPath(JSON.parse(JSON.stringify(bstData)))
         console.log(bstData)
         let isValue = findValue(parseInt(valueToFind))
         console.log(isValue)
