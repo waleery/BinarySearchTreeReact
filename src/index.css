@@ -40,3 +40,38 @@ button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
+
+    .navbar {
+        background-color: rgb(243, 242, 242);
+    }
+
+    /* node */
+    .rd3t-node {
+        fill: darkgray !important;
+        stroke: rgb(103, 103, 103);
+    }
+
+    /* link to node */
+    .rd3t-link {
+        stroke: black !important;
+    }
+    .path {
+        stroke: red  !important;
+    }
+    /* node label */
+    .rd3t-label__title {
+        fill: black !important;
+    }
+}
