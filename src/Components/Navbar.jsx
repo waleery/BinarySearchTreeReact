@@ -31,11 +31,8 @@ const Navbar = () => {
 
                     <button
                         onClick={() => {
-                            if(value != ""){
                                 navbarFunctions.value.findValue(value)
-                                //setValue("")
-                            }
-                        }}
+                            }}
                     >
                         {navbarFunctions?.value?.label1}
                     </button>

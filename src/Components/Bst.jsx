@@ -15,8 +15,8 @@ const Bst = () => {
             value: {
                 insertValue: handleInsertValue,
                 label0: "Insert",
-                findValue: handleFindValue, // Używamy funkcji opakowującej
-                label1: "Find"
+                findValue: bstDataWithoutPath ? clearPath : handleFindValue, // Używamy funkcji opakowującej
+                label1: bstDataWithoutPath ? "Clear path" : "Find" 
             },
             functions: [
                 {
@@ -26,10 +26,6 @@ const Bst = () => {
                 {
                     function: insertRandomValues,
                     label: "Random value",
-                },
-                {
-                    function: clearPath,
-                    label: "Clear path",
                 },
             ],
             clear: {
@@ -41,22 +37,27 @@ const Bst = () => {
 
     const clearPath = () => {
         setBstData(bstDataWithoutPath)
+        setBstDataWithouPath()
     }
 
     const clearTree = () => {
         let randomValue = Math.floor(Math.random() * (100 - 1)) + 1;
         const updatedBstData = { name: randomValue, path: false, children: [{}, {}] };
         setBstData(updatedBstData);
+        setBstDataWithouPath();
     };
 
     const handleFindValue = (valueToFind) => {
-        setBstDataWithouPath(JSON.parse(JSON.stringify(bstData)))
-        console.log(bstData)
-        let isValue = findValue(parseInt(valueToFind))
-        console.log(isValue)
+        if(!valueToFind){
+            return
+        }
+
+        const bstDataCopy = (JSON.parse(JSON.stringify(bstData)))
+        let isValue = findValue(parseInt(valueToFind), bstDataCopy)
         if(isValue){
+            setBstDataWithouPath(JSON.parse(JSON.stringify(bstData)))
             console.log("Wartość jest w drzewie")
-            setBstData({ ...bstData });
+            setBstData(bstDataCopy);
 
         } else {
             console.log("Wartości nie ma w drzewie")
@@ -66,12 +67,12 @@ const Bst = () => {
     const findValue = (valueToFind, root = {...bstData}) => {
         console.log(root)
         if(root.name === null || Object.keys(root).length === 0){
-            return root.name
+            return false
         }
 
         if(root.name === valueToFind){
             root.path = true; // Mark the node as part of the path
-            return root.name;
+            return true;
         }
 
         if( valueToFind > root.name){
@@ -103,6 +104,11 @@ const Bst = () => {
     const handleInsertValue = (valueToInsert) => {
         const updatedBstData = insertNode({ ...bstData }, parseInt(valueToInsert));
         setBstData(updatedBstData);
+
+        if(bstDataWithoutPath){
+            const updatedBstDataWithoutPath = insertNode({ ...bstDataWithoutPath }, parseInt(valueToInsert));
+            setBstDataWithouPath(updatedBstDataWithoutPath);
+        }
     };
 
     const insertRandomValues = (count = 1, maxValue = 100) => {
