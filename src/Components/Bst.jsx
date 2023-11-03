@@ -20,7 +20,7 @@ const Bst = () => {
             },
             functions: [
                 {
-                    function: insertRandomValues.bind(null, 30),
+                    function: insertRandomValues.bind(null, 50),
                     label: "Random 30 values",
                 },
                 {
@@ -129,6 +129,8 @@ const Bst = () => {
                 leafNodeClassName="node__leaf"
                 pathClassFunc={markLiksToNodesWithoutChildern}
                 translate={{ x: 800, y: 100 }}
+                collapsible={false}
+                scaleExtent={{max:1, min:0.05}}
             />
         </>
     );
