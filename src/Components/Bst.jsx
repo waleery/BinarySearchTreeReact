@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 import initialBstData from "../data/initialBstData.json";
 import { NavbarContext } from "../App";
-import { markLiksToNodesWithoutChildern } from "./Helpers/ReactD3Helpers";
+import { markLiksToNodesWithoutChildern, markSearchedValue } from "./Helpers/ReactD3Helpers";
 
 const Bst = () => {
     const [bstData, setBstData] = useState(initialBstData);
@@ -72,6 +72,7 @@ const Bst = () => {
 
         if(root.name === valueToFind){
             root.path = true; // Mark the node as part of the path
+            root.searchedValue = true
             return true;
         }
 
@@ -128,6 +129,7 @@ const Bst = () => {
                 branchNodeClassName="node__branch"
                 leafNodeClassName="node__leaf"
                 pathClassFunc={markLiksToNodesWithoutChildern}
+                renderCustomNodeElement={markSearchedValue}
                 translate={{ x: 800, y: 100 }}
                 collapsible={false}
                 scaleExtent={{max:1, min:0.05}}
