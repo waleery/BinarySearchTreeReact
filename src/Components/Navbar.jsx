@@ -37,8 +37,8 @@ const Navbar = () => {
                         {navbarFunctions?.value?.label1}
                     </button>
                 </div>
-                {navbarFunctions && navbarFunctions.functions ? navbarFunctions.functions.map(f => (
-                    <button onClick={() =>f.function()}>{f.label}</button>
+                {navbarFunctions && navbarFunctions.functions ? navbarFunctions.functions.map((f, i )=> (
+                    <button key={i} onClick={() =>f.function()}>{f.label}</button>
                 )) : null }
 
             </div>

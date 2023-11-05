@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 import initialBstData from "../data/initialBstData.json";
 import { NavbarContext } from "../App";
-import { markLiksToNodesWithoutChildern, markSearchedValue } from "./Helpers/ReactD3Helpers";
+import { markLiksToNodesWithoutChildern, markSearchedValue, shakeTree } from "./Helpers/ReactD3Helpers";
 
 const Bst = () => {
     const [bstData, setBstData] = useState(initialBstData);
@@ -56,16 +56,13 @@ const Bst = () => {
         let isValue = findValue(parseInt(valueToFind), bstDataCopy)
         if(isValue){
             setBstDataWithouPath(JSON.parse(JSON.stringify(bstData)))
-            console.log("Wartość jest w drzewie")
             setBstData(bstDataCopy);
-
         } else {
-            console.log("Wartości nie ma w drzewie")
+            shakeTree()
         }
     }
 
     const findValue = (valueToFind, root = {...bstData}) => {
-        console.log(root)
         if(root.name === null || Object.keys(root).length === 0){
             return false
         }
