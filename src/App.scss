@@ -70,8 +70,23 @@ input:hover {
     stroke: rgb(236, 230, 230) !important;
 }
 .path {
-    stroke: red !important;
+    stroke: rgb(227, 61, 61) !important;
+    transition: stroke 0.5s ease-in;
+    animation: changeWidth 0.8s ease forwards;
 }
+
+@keyframes changeWidth {
+    0% {
+        stroke-width: 1;
+    }
+    50% {
+        stroke-width: 1.25;
+    }
+    100% {
+        stroke-width: 3;
+    }
+}
+
 .rd3t-label__title {
     fill: rgb(236, 230, 230) !important;
 }
@@ -83,7 +98,30 @@ input:hover {
 
 .shakeAgain {
     animation: shakeAgain 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+.searchedValue {
+    animation: changeRadius 1s ease forwards;
+}
 
+@keyframes changeRadius {
+    0% {
+        r: 15;
+    }
+    100% {
+        r: 25;
+    }
+}
+.pointsOnPath {
+    animation: changeRadiusPointsOnPath 0.8s ease forwards;
+}
+
+@keyframes changeRadiusPointsOnPath {
+    0% {
+        r: 15;
+    }
+    100% {
+        r: 20;
+    }
 }
 
 @keyframes shake {

@@ -14,8 +14,17 @@ export const markSearchedValue = ({ nodeDatum }) => {
     if (nodeDatum.searchedValue) {
         return (
             <>
-                <circle r="20" fill="red" />
-                <text strokeWidth="1" x="25">
+                <circle r="15" fill="red" className="searchedValue"/>
+                <text className="rd3t-label__title" strokeWidth="1" x="25">
+                    {nodeDatum.name}
+                </text>
+            </>
+        );
+    } else if(nodeDatum.path){
+        return (
+            <>
+                <circle r="15" className="pointsOnPath" fill="sandybrown" />
+                <text className="rd3t-label__title" strokeWidth="1" x="25">
                     {nodeDatum.name}
                 </text>
             </>
