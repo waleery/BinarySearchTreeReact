@@ -20,12 +20,16 @@ const Bst = () => {
             },
             functions: [
                 {
-                    function: insertRandomValues.bind(null, 50),
+                    function: () =>insertRandomValues(20, 1000),
                     label: "Random 30 values",
                 },
                 {
                     function: insertRandomValues,
                     label: "Random value",
+                },
+                {
+                    function: balanceBST,
+                    label: "Balance",
                 },
             ],
             clear: {
@@ -81,6 +85,37 @@ const Bst = () => {
             return findValue(valueToFind, root.children[0])
         }
     }
+
+    function balanceBST() {
+        
+        const values = inOrderTraversal({...bstData});
+        
+        console.log(values)
+        // Posortuj tablicę
+        values.sort((a, b) => a - b);
+    
+        console.log(values)
+    }
+    
+    function inOrderTraversal(root) {
+        const values = [];
+        
+        function traverse(node) {
+            if (node) {
+                if(Object.keys(node.children[0]).length !== 0)
+                    traverse(node.children[0]);
+
+                values.push(node.name);
+
+                if(Object.keys(node.children[1]).length !== 0)
+                    traverse(node.children[1]);
+            }
+        }
+        traverse(root);
+        return values;
+    }
+    
+
 
     const insertNode = (root, valueToInsert) => {
         if (!root || Object.keys(root).length === 0) {
