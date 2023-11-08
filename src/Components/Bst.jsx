@@ -20,7 +20,7 @@ const Bst = () => {
             },
             functions: [
                 {
-                    function: () =>insertRandomValues(20, 1000),
+                    function: () =>insertRandomValues(20, 100),
                     label: "Random 30 values",
                 },
                 {
@@ -95,6 +95,11 @@ const Bst = () => {
         values.sort((a, b) => a - b);
     
         console.log(values)
+
+        const balanced = balanceBstFromArray(values)
+        console.log(balanced)
+
+        setBstData(balanced)
     }
     
     function inOrderTraversal(root) {
@@ -115,7 +120,26 @@ const Bst = () => {
         return values;
     }
     
+    const balanceBstFromArray = (sortedValues) => {
+        if(sortedValues.length === 0){
+            return {}
+        }
 
+        const middleIndex = Math.floor(sortedValues.length / 2)
+        const rootValue = sortedValues[middleIndex]
+        const leftValues = sortedValues.slice(0, middleIndex)
+        const rightValues = sortedValues.slice(middleIndex+1)
+        
+        const root = {
+            name: rootValue,
+            children: [
+                balanceBstFromArray(leftValues),
+                balanceBstFromArray(rightValues)
+            ]
+        }
+        
+        return root
+    }
 
     const insertNode = (root, valueToInsert) => {
         if (!root || Object.keys(root).length === 0) {
