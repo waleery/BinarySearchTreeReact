@@ -7,6 +7,7 @@ import { markLiksToNodesWithoutChildern, markSearchedValue, shakeTree } from "./
 const Bst = () => {
     const [bstData, setBstData] = useState(initialBstData);
     const [bstDataWithoutPath, setBstDataWithouPath] = useState();
+    const [searchedValue, setSearchedValue] = useState()
     const { setNavbarFunctions } = useContext(NavbarContext);
 
     useEffect(() => {
@@ -20,7 +21,7 @@ const Bst = () => {
             },
             functions: [
                 {
-                    function: () =>insertRandomValues(20, 100),
+                    function: () =>insertRandomValues(30, 100),
                     label: "Random 30 values",
                 },
                 {
@@ -28,7 +29,7 @@ const Bst = () => {
                     label: "Random value",
                 },
                 {
-                    function: balanceBST,
+                    function: handleBalance,
                     label: "Balance",
                 },
             ],
@@ -42,6 +43,7 @@ const Bst = () => {
     const clearPath = () => {
         setBstData(bstDataWithoutPath)
         setBstDataWithouPath()
+        setSearchedValue()
     }
 
     const clearTree = () => {
@@ -59,8 +61,11 @@ const Bst = () => {
         const bstDataCopy = (JSON.parse(JSON.stringify(bstData)))
         let isValue = findValue(parseInt(valueToFind), bstDataCopy)
         if(isValue){
-            setBstDataWithouPath(JSON.parse(JSON.stringify(bstData)))
+            if(!searchedValue){
+                setBstDataWithouPath(JSON.parse(JSON.stringify(bstData)))
+            }
             setBstData(bstDataCopy);
+            setSearchedValue(valueToFind)
         } else {
             shakeTree()
         }
@@ -86,9 +91,23 @@ const Bst = () => {
         }
     }
 
-    function balanceBST() {
+    useEffect(() => {
+        if(searchedValue){
+            handleFindValue(searchedValue)
+        }
+    }, [bstData]);
+
+    const handleBalance = () => {
+        setBstData(balanceBST({...bstData}))
+
+        if(searchedValue){
+            setBstDataWithouPath(balanceBST({...bstDataWithoutPath}))
+        }
+    }
+
+    function balanceBST(bst) {
         
-        const values = inOrderTraversal({...bstData});
+        const values = inOrderTraversal(bst);
         
         console.log(values)
         // Posortuj tablicę
@@ -99,7 +118,7 @@ const Bst = () => {
         const balanced = balanceBstFromArray(values)
         console.log(balanced)
 
-        setBstData(balanced)
+        return balanced
     }
     
     function inOrderTraversal(root) {
@@ -162,7 +181,7 @@ const Bst = () => {
         const updatedBstData = insertNode({ ...bstData }, parseInt(valueToInsert));
         setBstData(updatedBstData);
 
-        if(bstDataWithoutPath){
+        if(searchedValue){
             const updatedBstDataWithoutPath = insertNode({ ...bstDataWithoutPath }, parseInt(valueToInsert));
             setBstDataWithouPath(updatedBstDataWithoutPath);
         }

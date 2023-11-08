@@ -27,7 +27,7 @@ const Navbar = () => {
                     >
                         {navbarFunctions?.value?.label0}
                     </button>
-                    <input type="number" onChange={(e) => setValue(e.target.value)} value={value}></input>
+                    <input type="number" onChange={(e) => setValue(parseInt(e.target.value))} value={value}></input>
 
                     <button
                         onClick={() => {
