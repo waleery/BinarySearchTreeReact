@@ -41,23 +41,24 @@ export const markSearchedValue = ({ nodeDatum }) => {
     );
 };
 
-export const shakeTree = () => {
-    const treeContainer = document.querySelector(".rd3t-tree-container");
+export const shakeElement = (element) => {
+    
+    const elementToShake = document.querySelector(element=== "tree" ? ".rd3t-tree-container" : element === "input" ? ".inputValue" : null);
 
-    if (treeContainer) {
+    if (elementToShake) {
         if (document.querySelector(".shake")) {
-            treeContainer.classList.remove("shake");
-            treeContainer.classList.add("shakeAgain");
+            elementToShake.classList.remove("shake");
+            elementToShake.classList.add("shakeAgain");
 
             setTimeout(() => {
-                treeContainer.classList.remove("shakeAgain");
+                elementToShake.classList.remove("shakeAgain");
             }, 500);
         } else {
-            treeContainer.classList.remove("shakeAgain");
-            treeContainer.classList.add("shake");
+            elementToShake.classList.remove("shakeAgain");
+            elementToShake.classList.add("shake");
 
             setTimeout(() => {
-                treeContainer.classList.remove("shake");
+                elementToShake.classList.remove("shake");
             }, 500);
         }
     }

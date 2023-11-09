@@ -19,15 +19,13 @@ const Navbar = () => {
                 <div className="insert-value">
                     <button
                         onClick={() => {
-                            if(value != ""){
                                 navbarFunctions.value.insertValue(value)
                                 setValue("")
-                            }
                         }}
                     >
                         {navbarFunctions?.value?.label0}
                     </button>
-                    <input type="number" onChange={(e) => setValue(parseInt(e.target.value))} value={value}></input>
+                    <input className="inputValue" type="number" onChange={(e) => setValue(parseInt(e.target.value))} value={value}></input>
 
                     <button
                         onClick={() => {

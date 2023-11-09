@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 import initialBstData from "../data/initialBstData.json";
 import { NavbarContext } from "../App";
-import { markLiksToNodesWithoutChildern, markSearchedValue, shakeTree } from "./Helpers/ReactD3Helpers";
+import { markLiksToNodesWithoutChildern, markSearchedValue, shakeElement } from "./Helpers/ReactD3Helpers";
 
 const Bst = () => {
     const [bstData, setBstData] = useState(initialBstData);
@@ -55,6 +55,8 @@ const Bst = () => {
 
     const handleFindValue = (valueToFind) => {
         if(!valueToFind){
+            console.log("XXX")
+            shakeElement("input")
             return
         }
 
@@ -67,7 +69,7 @@ const Bst = () => {
             setBstData(bstDataCopy);
             setSearchedValue(valueToFind)
         } else {
-            shakeTree()
+            shakeElement("tree")
         }
     }
 
@@ -178,6 +180,10 @@ const Bst = () => {
     };
 
     const handleInsertValue = (valueToInsert) => {
+        if(!valueToInsert){
+            shakeElement("input")
+            return
+        }
         const updatedBstData = insertNode({ ...bstData }, parseInt(valueToInsert));
         setBstData(updatedBstData);
 
