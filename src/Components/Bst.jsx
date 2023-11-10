@@ -9,10 +9,7 @@ const Bst = () => {
     const [bstDataWithoutPath, setBstDataWithouPath] = useState();
     const [searchedValue, setSearchedValue] = useState()
 
-    const [translate, setTranslate] = useState({
-        width:800,
-        height:200
-    });
+    const [translate, setTranslate] = useState();
 
     const { setNavbarFunctions } = useContext(NavbarContext);
     const treeContainerRef = useRef(null);
@@ -78,7 +75,6 @@ const Bst = () => {
 
     const handleFindValue = (valueToFind) => {
         if(!valueToFind){
-            console.log("XXX")
             shakeElement("input")
             return
         }
@@ -226,6 +222,7 @@ const Bst = () => {
 
     return (
         <div style={{height:"100%"}} ref={treeContainerRef}>
+            {translate  ?
             <Tree
                 data={bstData}
                 orientation="vertical"
@@ -238,6 +235,7 @@ const Bst = () => {
                 collapsible={false}
                 scaleExtent={{max:1, min:0.05}}
             />
+            :null}
         </div>
     );
 };
