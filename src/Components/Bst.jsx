@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Tree from "react-d3-tree";
 import initialBstData from "../data/initialBstData.json";
 import { NavbarContext } from "../App";
@@ -8,7 +8,30 @@ const Bst = () => {
     const [bstData, setBstData] = useState(initialBstData);
     const [bstDataWithoutPath, setBstDataWithouPath] = useState();
     const [searchedValue, setSearchedValue] = useState()
+
+    const [translate, setTranslate] = useState({
+        width:800,
+        height:200
+    });
+
     const { setNavbarFunctions } = useContext(NavbarContext);
+    const treeContainerRef = useRef(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const { width, height } = treeContainerRef.current.getBoundingClientRect();
+            setTranslate({ width: width / 2, height: height / 5 });
+        };
+        handleResize()
+
+        window.addEventListener("resize", handleResize);
+
+        // Usuń nasłuchiwanie zdarzenia po odmontowaniu komponentu
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+        
+    }, []);
 
     useEffect(() => {
         setNavbarFunctions({
@@ -202,7 +225,7 @@ const Bst = () => {
     };
 
     return (
-        <>
+        <div style={{height:"100%"}} ref={treeContainerRef}>
             <Tree
                 data={bstData}
                 orientation="vertical"
@@ -211,11 +234,11 @@ const Bst = () => {
                 leafNodeClassName="node__leaf"
                 pathClassFunc={markLiksToNodesWithoutChildern}
                 renderCustomNodeElement={markSearchedValue}
-                translate={{ x: 800, y: 100 }}
+                translate={{ x: translate.width, y: translate.height }}
                 collapsible={false}
                 scaleExtent={{max:1, min:0.05}}
             />
-        </>
+        </div>
     );
 };
 
