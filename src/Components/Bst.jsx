@@ -99,7 +99,7 @@ const Bst = () => {
 
 
     useEffect(() => {
-        if(shouldFindPath){
+        if(shouldFindPath && searchedValue){
             handleFindValue(searchedValue)
         }
     }, [bstData]);
