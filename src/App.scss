@@ -44,10 +44,14 @@
             justify-content: space-between;
             gap: 15px;
         }
-        .clearButtonContener {
+        .specialButtonContener {
             margin-left: auto !important;
-            display: flex;
-            align-items: center !important;  
+            height: 100%;
+
+            .optionsButton{
+                display: flex;
+                min-height: 100%;
+            }
         }
     }
 }
@@ -231,39 +235,31 @@ input:hover {
 
 @media (max-width: 768px) {
     .navbar {
-        font-size: 0.8em !important;
         padding: 0.7rem;
 
         .logo-and-buttons {
             gap:30px;
+            justify-content: center !important;
             .name {
-                max-width: 50px;
-                font-size: 1.2em !important;
-                line-height: 15px;
+                max-width: none;
+                font-size: 1.5em !important;
+                line-height: 18px;
                 text-align: left;
             }
-
-
         }
     }
 }
 
-// @media (max-width: 810) {
-//     .name {
-//         max-width: 50px;
-//         font-size: 1.1em !important;
-//         line-height: 17px;
-//         text-align: left;
-//     }
-//     .navbar {
-//         //background-color: green !important;
-//         //justify-content: center;
-//         font-size: 0.8em !important;
-//         padding: 0.8rem;
+@media (max-width: 485px) {
+    .navbar {
+        .logo-and-buttons {
+            row-gap:20px !important;
+            justify-content: center !important;
 
-//         .logo-and-buttons {
-//             justify-content: start !important;
-//             gap: 25px;
-//         }
-//     }
-// }
+            .name {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+}
