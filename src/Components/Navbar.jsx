@@ -19,8 +19,8 @@ const Navbar = () => {
                 <div className="insert-value">
                     <button
                         onClick={() => {
-                                navbarFunctions.value.insertValue(value)
-                                setValue("")
+                            navbarFunctions.value.insertValue(value)
+                            setValue("")
                         }}
                     >
                         {navbarFunctions?.value?.label0}
@@ -29,19 +29,32 @@ const Navbar = () => {
 
                     <button
                         onClick={() => {
-                                navbarFunctions.value.findValue(value)
-                            }}
+                            navbarFunctions.value.findValue(value)
+                        }}
                     >
                         {navbarFunctions?.value?.label1}
                     </button>
                 </div>
-                {navbarFunctions && navbarFunctions.functions ? navbarFunctions.functions.map((f, i )=> (
-                    <button key={i} onClick={() =>f.function()}>{f.label}</button>
-                )) : null }
-
+                <div className="functionButtons">
+                    {navbarFunctions && navbarFunctions.functions
+                        ? navbarFunctions.functions.map((f, i) => (
+                              <button key={i} onClick={() => f.function()}>
+                                  {f.label}
+                              </button>
+                          ))
+                        : null}
+                </div>
+                <div className="clearButtonContener">
+                {navbarFunctions && navbarFunctions.clear ? (
+                    <button
+                        className="clearButton"
+                        onClick={() => navbarFunctions.clear.clearFunction()}
+                    >
+                        {navbarFunctions.clear.label}
+                    </button>
+                ) : null}
+                </div>
             </div>
-            {navbarFunctions && navbarFunctions.clear ? 
-            <button className="clearButton" onClick={() => navbarFunctions.clear.clearFunction()}>{navbarFunctions.clear.label}</button> : null}
         </nav>
     );
 };
