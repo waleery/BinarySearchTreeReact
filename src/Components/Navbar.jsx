@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CgMore } from "react-icons/cg"; // Import ikonki, na przykład z react-icons
 import { NavbarContext } from "../App";
-
+import DropdownButton from "./DropdownButton";
 const Navbar = () => {
     const { navbarFunctions, setNavbarFunctions } = useContext(NavbarContext);
     const [value, setValue] = useState("");
@@ -61,22 +60,23 @@ const Navbar = () => {
                         {navbarFunctions?.value?.label1}
                     </button>
                 </div>
-                {!optionsVisible ? 
-                <div className="functionButtons">
-                    {navbarFunctions && navbarFunctions.functions
-                        ? navbarFunctions.functions.map((f, i) => (
-                              <button key={i} onClick={() => f.function()}>
-                                  {f.label}
-                              </button>
-                          ))
-                        : null}
-                </div>
-                : null}   
+                {/* function buttons */}
+                {!optionsVisible ? (
+                    <div className="functionButtons">
+                        {navbarFunctions && navbarFunctions.functions
+                            ? navbarFunctions.functions.map((f, i) => (
+                                  <button key={i} onClick={() => f.function()}>
+                                      {f.label}
+                                  </button>
+                              ))
+                            : null}
+                    </div>
+                ) : null}
+
+                {/* Clear/Dropdown button */}
                 <div className="specialButtonContener">
                     {optionsVisible ? (
-                        <button className="optionsButton">
-                            <CgMore />
-                        </button>
+                        <DropdownButton/>
                     ) : navbarFunctions && navbarFunctions.clear ? (
                         <button
                             className="clearButton"

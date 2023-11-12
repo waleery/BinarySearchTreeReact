@@ -254,11 +254,18 @@ input:hover {
     .navbar {
         .logo-and-buttons {
             row-gap:20px !important;
-            justify-content: center !important;
+            justify-content: space-around !important;
 
             .name {
                 width: 100%;
                 text-align: center;
+            }
+
+            .insert-value{
+                margin-left: 10px;
+            }
+            .specialButtonContener{
+                margin-right: 10px;
             }
         }
     }

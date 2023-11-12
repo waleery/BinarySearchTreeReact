@@ -20,7 +20,7 @@ body {
     min-height: 100vh;
 }
 
-button {
+button, .optionsButton {
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
@@ -32,6 +32,13 @@ button {
     transition: border-color 0.25s;
 }
 
+.ant-dropdown-menu-root{
+    background-color:rgb(44, 44, 50) !important;
+}
+
+.ant-dropdown-menu-title-content > label{
+    color: white !important;
+}
 button:hover {
     border-color: #646cff;
 }
@@ -61,14 +68,17 @@ input {
     a:hover {
         color: #747bff;
     }
-    button {
+    button, .optionsButton {
         background-color: #f9f9f9;
     }
 
-    .navbar {
-        background-color: rgb(243, 242, 242);
+    .navbar, .ant-dropdown-menu-root{
+        background-color: rgb(243, 242, 242) !important;
     }
-
+    .ant-dropdown-menu-title-content > label{
+        color: #242424 !important;
+        font-weight: 500 !important;
+    }
     /* node */
     .rd3t-node {
         fill: darkgray !important;

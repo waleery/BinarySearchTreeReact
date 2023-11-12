@@ -1,3 +1,5 @@
+import { NavbarContext } from "../../App";
+
 export const findValue = (valueToFind, root = {...bstData}) => {
     if(root.name === null || Object.keys(root).length === 0){
         return false
