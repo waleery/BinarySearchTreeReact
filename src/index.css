@@ -1,11 +1,27 @@
 :root {
+    --background: #242424;
+    --background-navbar: rgb(44, 44, 50);
+    --background-input: #454545;
+    --logo-color: rgba(255, 255, 255, 0.87);
+    --text-primary: white;
+    --background-button: #1a1a1a;
+    --hover: #646cff;
+
+    --node-fill: rgb(236, 230, 230);
+    --node-stroke: black;
+
+    --node-text-color: rgb(236, 230, 230);
+    --link-stroke: rgb(236, 230, 230);
+    --path-color: rgb(227, 61, 61);
+
+
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden;
 
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -14,40 +30,50 @@
     -webkit-text-size-adjust: 100%;
 }
 
+[data-theme="light"] {
+    --background: #ffffff;
+    --background-navbar: rgb(243, 242, 242);
+    --background-input: white;
+    --logo-color: #213547;
+    --text-primary: rgb(0, 0, 0);
+    --background-button: #f9f9f9;
+    --hover: #646cff;
+
+    --node-fill: darkgray;
+    --node-stroke: black;
+    --node-text-color: black;
+    --link-stroke: black;
+    --path-color: red;
+}
+
 body {
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
 }
+.app {
+    height: 100%;
+    background-color: var(--background);
+}
+.name{
+    color: var(--logo-color) ;
 
-button, .optionsButton {
+}
+
+
+button,
+.optionsButton {
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    color: var(--text-primary);
+    background-color: var(--background-button);
     cursor: pointer;
     transition: border-color 0.25s;
 }
-
-.ant-dropdown-menu-root{
-    background-color:rgb(44, 44, 50) !important;
-}
-
-.ant-dropdown-menu-title-content > label{
-    color: white !important;
-}
-button:hover {
-    border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-}
-
 input {
     font-size: large;
     border-radius: 5px;
@@ -58,42 +84,26 @@ input {
     min-height: 25px;
     max-height: 25px;
     transition: border-color 0.25s;
+    background-color: var(--background-input);
+    color: var(--text-primary);
+
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        color: #213547;
-        background-color: #ffffff;
-    }
-    a:hover {
-        color: #747bff;
-    }
-    button, .optionsButton {
-        background-color: #f9f9f9;
-    }
+button:hover,
+input:hover {
+    border-color: var(--hover);
+}
 
-    .navbar, .ant-dropdown-menu-root{
-        background-color: rgb(243, 242, 242) !important;
-    }
-    .ant-dropdown-menu-title-content > label{
-        color: #242424 !important;
-        font-weight: 500 !important;
-    }
-    /* node */
-    .rd3t-node {
-        fill: darkgray !important;
-        stroke: rgb(103, 103, 103);
-    }
+.ant-dropdown-menu-root {
+    background-color: var(--background-navbar) !important;
+}
 
-    /* link to node */
-    .rd3t-link {
-        stroke: black !important;
-    }
-    .path {
-        stroke: red  !important;
-    }
-    /* node label */
-    .rd3t-label__title {
-        fill: black !important;
-    }
+.ant-dropdown-menu-title-content > label {
+    color: var(--text-primary) !important;
+}
+
+.switchMode{
+    position: absolute;
+    bottom: 1rem;
+    right:1rem
 }

@@ -152,7 +152,7 @@ const Bst = () => {
                 renderCustomNodeElement={markSearchedValue}
                 translate={{ x: translate.width, y: translate.height }}
                 collapsible={false}
-                scaleExtent={{max:1, min:0.05}}
+                scaleExtent={{max:1.6, min:0.05}}
             />
             :null}
         </div>
