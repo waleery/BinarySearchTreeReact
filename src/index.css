@@ -22,6 +22,8 @@
     height: 100vh;
     overflow: hidden;
 
+    color-scheme: dark ;
+
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -45,6 +47,9 @@
     --node-text-color: black;
     --link-stroke: black;
     --path-color: red;
+
+    color-scheme: light ;
+
 }
 
 body {
@@ -101,7 +106,7 @@ input:hover {
 }
 
 .ant-dropdown-menu-root {
-    background-color: var(--background-navbar) !important;
+    background-color: rgb(153, 153, 153) !important;
 }
 
 .ant-dropdown-menu-title-content > label {
