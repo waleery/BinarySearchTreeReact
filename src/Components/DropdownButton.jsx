@@ -44,7 +44,7 @@ const DropdownButton = () => {
     
     return (
         <Dropdown menu={{ items }} placement="bottomRight">
-            <button className="optionsButton">
+            <button className="optionsButton" aria-label="More functions">
                 <CgMore />
             </button>
         </Dropdown>

@@ -28,7 +28,7 @@ function App() {
         };
       }, []);
 
-    const changeThemeButton = themeMode === "dark" ? <FiSun /> : <FiMoon />;
+    const changeThemeButton = themeMode === "dark" ? <FiSun aria-label="Switch to light mode"/> : <FiMoon aria-label="Switch to dark mode"/>;
 
     return (
         <NavbarContext.Provider
@@ -37,9 +37,9 @@ function App() {
                 setNavbarFunctions,
             }}
         >
-            <div className="app" data-theme={themeMode}>
-                <Navbar />
-                <Bst />
+            <div className="app" data-theme={themeMode} aria-live="polite" aria-atomic="true">
+                <Navbar aria-label="Navigation bar"/>
+                <Bst aria-label="Binary Search Tree"/>
                 <footer className="switchMode">
                     <button onClick={() => themeMode === "light" ? setThemeMode("dark") : setThemeMode("light")}>
                         {changeThemeButton}

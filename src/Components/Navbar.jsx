@@ -19,24 +19,21 @@ const Navbar = () => {
             }
         };
 
-        // Dodaj nasłuchiwanie na zdarzenie zmiany rozmiaru ekranu
         window.addEventListener("resize", handleResize);
 
-        // Wywołaj funkcję handleResize na początku, aby ustawić stan na początku
         handleResize();
 
-        // Usuń nasłuchiwanie po zakończeniu efektu ubocznego
         return () => {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
 
     return (
-        <nav className="navbar">
+        <nav className="navbar" aria-label="Navigation bar">
             <div className="logo-and-buttons">
                 <span className="name">{navbarFunctions.name}</span>
 
-                <div className="insert-value">
+                <div className="insert-value" aria-label="Insert/find value section">
                     <button
                         onClick={() => {
                             navbarFunctions.value.insertValue(value);
@@ -50,22 +47,25 @@ const Navbar = () => {
                         type="number"
                         onChange={(e) => setValue(parseInt(e.target.value))}
                         value={value}
+                        aria-label="Input value"
                     ></input>
 
                     <button
                         onClick={() => {
                             navbarFunctions.value.findValue(value);
                         }}
+                        aria-label={navbarFunctions?.value?.label1}
+
                     >
                         {navbarFunctions?.value?.label1}
                     </button>
                 </div>
                 {/* function buttons */}
                 {!optionsVisible ? (
-                    <div className="functionButtons">
+                    <div className="functionButtons" aria-label="Function buttons">
                         {navbarFunctions && navbarFunctions.functions
                             ? navbarFunctions.functions.map((f, i) => (
-                                  <button key={i} onClick={() => f.function()}>
+                                  <button key={i} onClick={() => f.function()} aria-label={f?.label}>
                                       {f.label}
                                   </button>
                               ))
@@ -74,7 +74,7 @@ const Navbar = () => {
                 ) : null}
 
                 {/* Clear/Dropdown button */}
-                <div className="specialButtonContener">
+                <div className="specialButtonContener" aria-label="Special button container">
                     {optionsVisible ? (
                         <DropdownButton/>
                     ) : navbarFunctions && navbarFunctions.clear ? (
@@ -83,6 +83,7 @@ const Navbar = () => {
                             onClick={() =>
                                 navbarFunctions.clear.clearFunction()
                             }
+                            aria-label={navbarFunctions.clear.label}
                         >
                             {navbarFunctions.clear.label}
                         </button>
