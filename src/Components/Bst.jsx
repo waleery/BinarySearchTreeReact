@@ -70,7 +70,7 @@ const Bst = () => {
 
     const clearTree = () => {
         let randomValue = Math.floor(Math.random() * (100 - 1)) + 1;
-        const updatedBstData = { name: randomValue, path: false, children: [{}, {}] };
+        const updatedBstData = {}
         setBstData(updatedBstData);
         setBstDataWithouPath();
         setSearchedValue()
@@ -122,8 +122,10 @@ const Bst = () => {
             shakeElement("input")
             return
         }
-        const updatedBstData = insertNode({ ...bstData }, parseInt(valueToInsert));
-        setBstData(updatedBstData);
+        setBstData(prevBstData => {
+            const updatedBstData = insertNode({...prevBstData}, parseInt(valueToInsert));
+            return updatedBstData;
+        });
 
         if(searchedValue){
             const updatedBstDataWithoutPath = insertNode({ ...bstDataWithoutPath }, parseInt(valueToInsert));
@@ -134,7 +136,6 @@ const Bst = () => {
     const insertRandomValues = (count = 1, maxValue = 100) => {
         for (let i = 0; i < count; i++) {
             let randomNumber = Math.floor(Math.random() * (maxValue - 1) + 1);
-
             handleInsertValue(randomNumber);
         }
     };

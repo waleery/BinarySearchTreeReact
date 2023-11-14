@@ -22,7 +22,7 @@ export const findValue = (valueToFind, root = {...bstData}) => {
 
 export const insertNode = (root, valueToInsert) => {
     if (!root || Object.keys(root).length === 0) {
-        return (root = { name: valueToInsert,path: false, children: [{}, {}] });
+        return { name: valueToInsert,path: false, children: [{}, {}] };
     }
 
     if (root.name == valueToInsert) {
