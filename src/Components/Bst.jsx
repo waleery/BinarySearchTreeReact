@@ -141,9 +141,10 @@ const Bst = () => {
     };
 
     return (
-        <div style={{height:"100%"}} ref={treeContainerRef} aria-label="Binary search tree">
+        <div style={{height:"100%"}} ref={treeContainerRef} role="tree" aria-label="Binary search tree container">
             {translate  ?
             <Tree
+                aria-label="Binary search tree display"
                 data={bstData}
                 orientation="vertical"
                 rootNodeClassName="node__root"
