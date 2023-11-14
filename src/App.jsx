@@ -12,7 +12,6 @@ function App() {
     const [themeMode, setThemeMode] = useState(
         window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
     );
-    console.log(themeMode)
 
     useEffect(function handleThemeChangeBySystem () {
         const colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: light)");

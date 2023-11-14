@@ -3,7 +3,7 @@ import Tree from "react-d3-tree";
 import initialBstData from "../data/initialBstData.json";
 import { NavbarContext } from "../App";
 import { markLiksToNodesWithoutChildern, markSearchedValue, shakeElement } from "./Helpers/ReactD3Helpers";
-import { balanceBST, findValue, insertNode } from "./Helpers/BstHelpers";
+import { balanceBST, findValue, insertNode, sleep } from "./Helpers/BstHelpers";
 
 const Bst = () => {
     const [bstData, setBstData] = useState(initialBstData);
@@ -133,10 +133,11 @@ const Bst = () => {
         }
     };
 
-    const insertRandomValues = (count = 1, maxValue = 100) => {
+    const insertRandomValues = async (count = 1, maxValue = 100) => {
         for (let i = 0; i < count; i++) {
             let randomNumber = Math.floor(Math.random() * (maxValue - 1) + 1);
             handleInsertValue(randomNumber);
+            await sleep(300); // Odczekaj 1000 ms (1 sekunda) przed dodaniem kolejnej liczby
         }
     };
 

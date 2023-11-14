@@ -91,3 +91,5 @@ const balanceBstFromArray = (sortedValues) => {
     
     return root
 }
+
+export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
